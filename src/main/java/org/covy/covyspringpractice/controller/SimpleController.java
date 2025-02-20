@@ -7,9 +7,14 @@ import org.springframework.stereotype.Controller;
 @Controller// 스프링 MVC 구조에서 컨트롤러 역할을 하는 Bean
 public class SimpleController {
 
-    // 필드 주입 방법
+    private final SimpleService simpleService;
+
+    // 생성자 주입
     @Autowired
-    private SimpleService simpleService;
+    public SimpleController(SimpleService simpleService) {
+        // 스프링이 주입해준 SimpleService를 받아서 필드에 할당
+        this.simpleService = simpleService;
+    }
 
     public void printGreeting() {
         // 의존성이 주입된 SimpleService 사용
